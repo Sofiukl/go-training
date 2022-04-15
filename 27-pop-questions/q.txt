@@ -1,0 +1,146 @@
+1. list all the datatypes in golang 
+Ans: string int float bool slice struct map channel etc
+2. what is interface? why do you use it? 
+Ans: interface is abstract type, its used to define the construct. other types which follow the
+same contruct can be considered of interface type. Let's consider below example -
+    type shape interface { draw() }
+    type circle struct {} -> contains a receiver function for draw method
+    type rectangle struct {} -> contains a receiver function for draw method
+    then type circle, rectangle can also be considered of type shape
+3. what are concurrency and parralism and what is the difference between both? 
+Ans: parralism means the tasks are executing at the same time. but in case of concurrency tasks are executing
+concurrently not at the exactly same time. As an exampel i can say -
+    let's say there are two tasks - need to write  2 apis
+    >> there is only 1 resource. the resource is developing both apis concurrently meaning, 
+    if he is blocked or dependent or waiting for others with one api, then he will continue 
+    the development with other api
+    >> parralism means he is developing both the api at the same time, this is not possible 
+    with 1 resource, i mean with one cpu core
+4. difference between goroutines and threads? 
+    >> goroutine: lightwieght, first startup time, managed by goruntime, can communicate via channel
+    >> thread: its heavy, long start up time, managed by operating system, no direct communication like channel
+    there can have thousand of goroutines in a go programe
+5. what are channels for? 
+Ans: channel is used as a communication medium between goroutines
+6. can you do something in goroutines without channels? 
+Ans. Yes we can do, if we need communication like passing data b/w goroutines then channel is required
+7. difference between arrays and slices? 
+Ans. slice can grow, shrink dynamically. this the limitation of array. both holds the data of similar type.
+8. what is a closure? define it. 
+Ans. closure is the inner function which has the access of outer function's variables
+9. what is the size of int(not int8, int16)? where is the size of int defined? 
+Ans. the size of int is platform dependent
+10. What is runtime? runtime package? 
+Ans. Package runtime contains operations that interact with Go's runtime system, 
+such as functions to control goroutines. It also includes the low-level type information used by the reflect package; 
+11. how can you get how many cores your computer has? 
+Ans. runtime.NumCPU()
+12. How would you tell a goroutine to use less core than what you have? 
+Ans. We can use GOMAXPROCS(n int) for setting how many core will be used for simaltinues processing
+13. how would you determine the type of a variable? which package to use for it? 
+Ans. relect package. reflect.TypeOf(variable)
+14. What all types a map can store? 
+Ans. it can store any type. but one map can store similar type
+15. What is rune? 
+Ans. its a data type. it's introduced for storing unicode.
+16. what are services in golang? 
+Ans. We can write service package in golang also like other language
+17. Define a singleton? 
+Ans. singleton class have only one object throughout the execution context
+18. Abstraction? Interfaces? Implementation? 
+Ans. golang does not support oo approach although it have some handy feature for writing good
+code. structs, interface custom type, receiver function, has built in support for concurrency
+19. When do you use a structure in golang?
+Ans. it's used to create a type which can have different type of priperties
+like we can create an employee struct which can have name string, isManger bool, skills []string properties 
+20. How do define struct type functions? and how can you access those functions? Can you define such functions to other datatypes as well?
+Ans. type employee struct{}
+func (e employee) getFullName() string { // Implementation} // receiver function
+21. Why are there no classes in Go? 
+Ans. go does not support oo approach, here function can exist outside of an object
+22. Compile time and runtime? 
+Ans. leave it
+23. Do you need to convert the type of a variable of interface{} type passed in a function as an argument? 
+Ans.No.A type implements an interface if it's methods include the methods of that interface.
+Since empty interface doesn't have any methods, all types implement it.
+24. Why are goroutines light-weight? Explain reason. 
+Ans. goroutine takes less memory initially 2kb and its maintained by go runtime schedule not by the os
+it has less start time
+25. Do threads share memory? how? 
+Ans. Yes, threads share memory, they communicate by sharing memory
+26. Given a string "abca" print first non-repetitive letter from this string. 
+27. func main(){ fmt.Println("2") go func(){ fmt.Println("2") }() } what would be the output? and why? 
+Ans. only 2. main routine will exit before printing from second goroutine
+28. func getType(i interface{}){ } perform functionalities on the basis of type of variable.
+29. What is defer?
+Ans. defer gets executed at the end of the function although we can write it before end of the function
+30. what is panic?
+Ans. panic means something unexpectly occur, we don't know how to handle it in programe, then we exit the
+programe
+panic("somting unknown happen")
+31. How can you do json marshaling & unmarshaling?
+Ans. using encoding/json package, we can call marshal and unmarshal function.
+32. what is select case?
+select { // waits unitl one value get from channel
+    case: msg := <- ch:
+        // do what ever you want
+    case: msg1 := <- ch1:
+        // do what ever you want
+}
+33. what is wait group? when to use?
+Ans. see the section 'waitgroup'
+
+34. List data types on Golang?
+Ans: There are 4 data types in the Go language
+Basic type numbers, strings and booleans
+Aggregate type structures and arrays
+Reference type slices, pointers, maps, channels and functions
+Interface type
+
+before interview
+    >> read little deep about goroutine, thread, concurrency vs parralism, go scheduler
+    >> why you will use golang over other programing language? [simplicity, built in concurrency, good learning curve]
+    >> what frameworks have you used for developing apis, managing environmental variables
+    >> how to up an in built http server in golang
+    >> how to make database communication?
+    >> how you have managed package management
+    >> what is gopath
+    >> file reading
+    >> gRPC
+    >> SOLID principle
+    >> search and read some interview questions
+
+
+practicle project :
+--------------------
+(Done) 1. Writing file upload api and saving result in db using worker pool
+    >> writing data in mongo with s3 identifier (done)
+    >> download file (done)
+    >> swagger (done)
+    >> read details about go mod, package documentation (done)
+(Done) 2. Create exe for uploading bulk folder to s3 using worker pool
+(Done) 3. gRPC project
+
+
+Go Module Comments:
+----------------------
+go mod init github.com/sofiukl/io-service/
+go build / go test // Fills the above generated go.mod files with dependency
+
+go get // install all the packages listed in go.mod
+go mod download // download all the packages mentioned in go.mod
+go mod tidy // clear unused package
+
+go get -u // update minor, patch version with given major version in go.mod for all the packages
+go get github.com/thatisuday/nummanip@v1.1.2 // download and use specific version
+
+or we can manually update go.mod file and run go get
+
+
+Go Package documentation generate:
+-----------------------------------
+sudo go get -v  golang.org/x/tools/cmd/godoc
+go doc github.com/sofiukl/io-service
+godoc -http=:6060
+
+visit http://localhost:6060/pkg/github.com/sofiukl/io-service/ for documentation
