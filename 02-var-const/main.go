@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// global variables
+// global constants
 const (
 	i = 5
 	j = 10
