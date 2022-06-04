@@ -43,3 +43,11 @@ func main() {
 func parseArgument(arg string) (string, error) {
 	return "", invalidArgument{arg: arg}
 }
+
+/*
+In Go it’s idiomatic to communicate errors via an explicit,
+separate return value. This contrasts with the exceptions used
+in languages like Java and Ruby. Go’s approach makes it easy
+to see which functions return errors and to handle them
+using the same language constructs employed for any other, non-error tasks.
+*/
