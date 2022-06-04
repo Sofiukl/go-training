@@ -14,6 +14,14 @@ type error interface {
 Any type which implements this contract can be considered of type error.
 Check below code to check how to create custom error
 
+For Java, we do the below to create custom exception
+
+public class InvalidArgument extends Exception { 
+    public InvalidArgument(String errorMessage) {
+        super(errorMessage);
+    }
+}
+
 */
 
 type invalidArgument struct {
