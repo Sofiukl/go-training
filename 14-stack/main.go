@@ -2,11 +2,16 @@ package main
 
 import "fmt"
 
-// Stack - the Stack type
-// LIFO
+// Stack - the Stack type (LIFO)
+
+// func append(s []T, vs ...T) []T
+// The first parameter s of append is a slice of type T, and the rest are T values to append to the slice.
+
 type Stack []int
 
 func (s *Stack) push(v int) {
+	// s is an pointer to Stack. *s denotes the value of s, &s denotes the memory address of s
+	// here we have used pointer receiver, please refer L8 Receiver
 	*s = append((*s), v)
 }
 
