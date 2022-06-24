@@ -1,0 +1,27 @@
+// Goroutines
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"strconv"
+	"time"
+)
+
+func f(from int) {
+	n := rand.Intn(5)
+	time.Sleep(time.Duration(n) * time.Second) // time to complete it's task
+	fmt.Println("completed " + strconv.Itoa(from))
+}
+
+func main() {
+	f(6) // normal func call, sync
+	f(4) // normal func call, sync
+	for i := 1; i < 4; i++ {
+		go f(i) // Go routine, async
+	}
+
+	time.Sleep(6 * time.Second) // wait for go routine to complete, ideally
+	// use wait group
+	fmt.Println("done")
+}
